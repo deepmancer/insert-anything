@@ -19,7 +19,7 @@
 </p>
 
 ## 🔥 News
-
+* **[2025.7.4]** Released a separate test dataset in the [Google Drive](https://drive.google.com/drive/folders/1uUD_iGm4dAEVYGmXp5KvjWl1e_j2pjiK?usp=sharing).
 * **[2025.6.3]** Separate the ComfyUI code into a [new repository](https://github.com/mo230761/InsertAnything-ComfyUI-official).
 * **[2025.6.1]** Release a new ComfyUI workflow! No need to download the full model folder!
 * **[2025.5.23]** Release the training code for users to reproduce results and adapt the pipeline to new tasks!
