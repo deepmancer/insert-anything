@@ -1,4 +1,4 @@
-<h1 align="center">Insert Anything</h2>
+<h1 align="center">Insert Anything (AAAI'26 Oral)</h2>
 <p align="center">
 <a href="https://song-wensong.github.io/"><strong>Wensong Song</strong></a>
 ·
