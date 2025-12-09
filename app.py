@@ -15,35 +15,39 @@ dtype = torch.bfloat16
 size = (768, 768)
 
 pipe = FluxFillPipeline.from_pretrained(
-    "/path/to/black-forest-labs-FLUX.1-Fill-dev",
+    "black-forest-labs/FLUX.1-Fill-dev",
     torch_dtype=dtype
 ).to("cuda")
 
 pipe.load_lora_weights(
-    "/path/to/lora"
+    "/workspace/HairPort/Hairdar/insert_anything_lora.safetensors"
 )
 
 
-redux = FluxPriorReduxPipeline.from_pretrained("/path/to/black-forest-labs-FLUX.1-Redux-dev").to(dtype=dtype).to("cuda")
+redux = FluxPriorReduxPipeline.from_pretrained("black-forest-labs/FLUX.1-Redux-dev").to(dtype=dtype).to("cuda")
 
-
-
+target_id = "ana_2"
+source_id = "taylor_2"
+data_dir = "/workspace/outputs"
+view_aligned_dir = os.path.join(data_dir, "view_aligned/shape_hi3dgen__texture_mvadapter", f"{target_id}_to_{source_id}")
+import os
 ###   example  #####
-ref_dir='./examples/ref_image'
-ref_mask_dir='./examples/ref_mask'
-image_dir='./examples/source_image'
-image_mask_dir='./examples/source_mask'
+ref_dir=os.path.join(view_aligned_dir, "warping/target_image.png")
+ref_mask_dir=os.path.join(view_aligned_dir, "warping/target_hair_mask.png")
+image_dir=os.path.join(data_dir, "bald/w_seg/image", f"{source_id}.png")
+image_mask_dir=ref_mask_dir
+# os.path.join(data_dir, "bald/w_seg/mask", f"{source_id}.png")
 
-ref_list=[os.path.join(ref_dir,file) for file in os.listdir(ref_dir) if '.jpg' in file or '.png' in file or '.jpeg' in file ]
+ref_list=[ref_dir]
 ref_list.sort()
 
-ref_mask_list=[os.path.join(ref_mask_dir,file) for file in os.listdir(ref_mask_dir) if '.jpg' in file or '.png' in file or '.jpeg' in file]
+ref_mask_list=[ref_mask_dir]
 ref_mask_list.sort()
 
-image_list=[os.path.join(image_dir,file) for file in os.listdir(image_dir) if '.jpg' in file or '.png' in file or '.jpeg' in file ]
+image_list=[image_dir]
 image_list.sort()
 
-image_mask_list=[os.path.join(image_mask_dir,file) for file in os.listdir(image_mask_dir) if '.jpg' in file or '.png' in file or '.jpeg' in file]
+image_mask_list=[image_mask_dir]
 image_mask_list.sort()
 ###   example  #####
 
